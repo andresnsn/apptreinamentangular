@@ -7,17 +7,20 @@ import { LoginComponent } from './login/login.component';
 import { RouterModule } from '@angular/router';
 import { rootRouterConfig } from './app.routes';
 import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    //AppRoutingModule,
-    [RouterModule.forRoot(rootRouterConfig, { useHash: false })]
+    ReactiveFormsModule,
+    [RouterModule.forRoot(rootRouterConfig, { useHash: false })],
+
   ],
   providers: [],
   bootstrap: [AppComponent]
