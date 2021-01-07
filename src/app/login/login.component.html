@@ -3,17 +3,23 @@
     <form [formGroup]="emailAndPasswordValidation" (ngSubmit)="onSubmit()">
         <div class="form-group">
 
-            <input type="email" id="emailinput" class="form-control"placeholder="email" formControlName="email" required size="30">
+            <input type="email" id="emailinput" class="form-control" placeholder="email" formControlName="email" required size="30">
 
         </div>
-        <div *ngIf="this.emailAndPasswordValidation.get('email')?.valid;">Não digita merda no formulário, bro!</div>
+        <small *ngIf="this.emailAndPasswordValidation.get('email')?.invalid && (emailAndPasswordValidation.dirty || emailAndPasswordValidation.touched);">*O campo e-mail é obrigatório.</small>
 
         <div class="form-group">
 
             <input type="password" id="passwordinput" class="form-control" formControlName="password" placeholder="senha" size="30">
-
+            
         </div>
+        <small *ngIf="this.emailAndPasswordValidation.get('password')?.invalid && (emailAndPasswordValidation.dirty || emailAndPasswordValidation.touched);">*Digite sua senha.</small>
+        <br><button class="btn btn success" [ngClass]="{'' : validFields == false, 'btn btn-success' : validFields == true}" [disabled]="this.emailAndPasswordValidation.get('email')?.invalid || this.emailAndPasswordValidation.get('password')?.invalid" type="submit" id="submitbutton">Entrar</button>
+        <br>
 
-        <button type="submit" id="submitbutton">Entrar</button>
+
+        <input type="hidden" *ngIf="this.emailAndPasswordValidation.get('email')?.valid && this.emailAndPasswordValidation.get('password')?.valid?unlockButton():false">
+
+        
     </form>
 </section>

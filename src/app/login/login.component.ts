@@ -1,6 +1,6 @@
 import { i18nMetaToJSDoc } from '@angular/compiler/src/render3/view/i18n/meta';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 
 @Component({
@@ -10,8 +10,9 @@ import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
 export class LoginComponent implements OnInit{
 
   emailAndPasswordValidation: FormGroup;
+  public validFields: boolean = false;
 
-  x: boolean;
+  
   constructor() { }
 
   ngOnInit(): void {
@@ -22,22 +23,19 @@ export class LoginComponent implements OnInit{
     console.log(this.emailAndPasswordValidation)
   }
 
-  /*private teste() {
-    this.loginModel = new FormGroup({})
-  }*/
+  public unlockButton() {
+    this.validFields = true;
+  }
 
   private initForm() {
     this.emailAndPasswordValidation =  new FormGroup({
-      'email': new FormControl("", Validators.minLength(5)),
-      'password': new FormControl("", Validators.minLength(8)),
+      'email': new FormControl("", [Validators.required, Validators.email]),
+      'password': new FormControl("", Validators.required, ),
     });
 
   
     
   }
 
-  get email() { return this.emailAndPasswordValidation.get('email'); }
-
-  get password() { return this.emailAndPasswordValidation.get('password'); }
 
 }
