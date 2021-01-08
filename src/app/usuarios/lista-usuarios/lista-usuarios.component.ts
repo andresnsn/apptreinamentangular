@@ -4,6 +4,7 @@ import { UsuarioService } from '../usuarios.service';
 import {MatPaginator } from '@angular/material/paginator';
 import { ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
+import { AppComponent } from 'src/app/app.component';
 
 
 @Component({
@@ -13,6 +14,7 @@ import { MatTableDataSource } from '@angular/material/table';
 
 export class ListaUsuariosComponent implements OnInit, AfterViewInit {
 
+
   displayedColumns: string[] = ['name', 'username', 'email'];
 
   public usuarios : Usuario[];
@@ -20,6 +22,7 @@ export class ListaUsuariosComponent implements OnInit, AfterViewInit {
   recoveredData: any;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
+
 
   ngAfterViewInit() {
     this.recoveredData.paginator = this.paginator;
@@ -31,6 +34,7 @@ export class ListaUsuariosComponent implements OnInit, AfterViewInit {
     this.usuarioService.getUsers().subscribe(usuarios => {this.usuarios = usuarios; console.log(usuarios)}, error => console.log(error));
     var dataSource = new MatTableDataSource<Usuario>(this.usuarios);
     this.recoveredData(dataSource);
+    
   }
 
   public setRecoveredData(recoveredData: any) {

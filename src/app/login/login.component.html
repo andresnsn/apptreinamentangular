@@ -3,18 +3,24 @@
     <form [formGroup]="emailAndPasswordValidation" (ngSubmit)="onSubmit()">
         <div class="form-group">
 
-            <input type="email" id="emailinput" class="form-control" placeholder="email" formControlName="email" required size="30">
+            <input type="email" [(ngModel)]="email" id="emailinput" class="form-control" placeholder="email" formControlName="email" required size="30">
 
         </div>
         <small *ngIf="this.emailAndPasswordValidation.get('email')?.invalid && (emailAndPasswordValidation.dirty || emailAndPasswordValidation.touched);">*O campo e-mail é obrigatório.</small>
 
         <div class="form-group">
 
-            <input type="password" id="passwordinput" class="form-control" formControlName="password" placeholder="senha" size="30">
+            <input type="password" [(ngModel)]="password" id="passwordinput" class="form-control" formControlName="password" placeholder="senha" size="30">
             
         </div>
-        <small *ngIf="this.emailAndPasswordValidation.get('password')?.invalid && (emailAndPasswordValidation.dirty || emailAndPasswordValidation.touched);">*Digite sua senha.</small>
-        <br><button class="btn btn success" [ngClass]="{'' : validFields == false, 'btn btn-success' : validFields == true}" [disabled]="this.emailAndPasswordValidation.get('email')?.invalid || this.emailAndPasswordValidation.get('password')?.invalid" type="submit" id="submitbutton">Entrar</button>
+        <small *ngIf="this.emailAndPasswordValidation.get('password')?.invalid && (emailAndPasswordValidation.dirty || emailAndPasswordValidation.touched);">*Digite sua senha.</small><br>
+        <input type="submit" value="Login" class="btn btn-success" [ngClass]="{'' : validFields == false, 'btn btn-success' : validFields == true}" [disabled]="this.emailAndPasswordValidation.get('email')?.invalid || this.emailAndPasswordValidation.get('password')?.invalid" id="submitbutton">
+        <br><br>
+        <label [ngClass]="email">O email é {{ email }}</label>
+        <br><label [ngClass]="password">A senha é {{ password }}</label>
+        <br><label [ngClass]="logged">O estado de logado é: {{ logged }}</label><br>
+        <label [ngClass]="authGuard.logged">O estado da variável de segurança é {{ authGuard.logged }}</label>
+        <label>Aperte login duas vezes para funcionar.</label>
         <br>
 
 

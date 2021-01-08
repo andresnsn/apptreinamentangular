@@ -13,7 +13,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 import { CardsImagensComponent } from './imagens/cards-imagens/cards-imagens.component';
 import { ImagemService } from './imagens/imagem.service';
-
+import { AuthGuardService } from './login/auth-guard.service';
+import { HttpClient } from '@angular/common/http';
 
 
 
@@ -38,7 +39,8 @@ import { ImagemService } from './imagens/imagem.service';
   ],
   providers: [
     UsuarioService,
-    ImagemService
+    ImagemService,
+    AuthGuardService
   ],
   bootstrap: [AppComponent]
 })
